@@ -19,6 +19,8 @@ package v1
 import (
 	"testing"
 
+	_ "knative.dev/pkg/system/testing"
+
 	"golang.org/x/net/context"
 	authenticationv1 "k8s.io/api/authentication/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -38,7 +40,8 @@ var (
 						SubscriberURI: apis.HTTP("subscriberendpoint"),
 						ReplyURI:      apis.HTTP("resultendpoint"),
 					}},
-				}},
+				},
+			},
 		},
 	}
 
@@ -53,7 +56,8 @@ var (
 						SubscriberURI: apis.HTTP("subscriberendpoint2"),
 						ReplyURI:      apis.HTTP("resultendpoint2"),
 					}},
-				}},
+				},
+			},
 		},
 	}
 )
@@ -75,7 +79,8 @@ func TestInMemoryChannelValidation(t *testing.T) {
 							SubscriberURI: apis.HTTP("subscriberendpoint"),
 							ReplyURI:      apis.HTTP("resultendpoint"),
 						}},
-					}},
+					},
+				},
 			},
 		},
 		want: nil,
@@ -89,7 +94,8 @@ func TestInMemoryChannelValidation(t *testing.T) {
 							SubscriberURI: apis.HTTP("subscriberendpoint"),
 							ReplyURI:      apis.HTTP("replyendpoint"),
 						}, {}},
-					}},
+					},
+				},
 			},
 		},
 		want: func() *apis.FieldError {
